@@ -3,6 +3,28 @@
 **Project:** Mobile app connecting pet owners, veterinarians, and animal shelters  
 **Tech Stack:** React Native (Expo SDK 52), TypeScript, AWS Cognito, Redux Toolkit 
 
+**SetUp commands:**
+- Create new Expo project with TypeScript
+npx create-expo-app@latest laika-app --template blank-typescript
+
+- Navigate into project
+cd laika-app
+
+- Create folder structure
+mkdir -p app/auth src/store/slices src/constants src/types src/services src/config
+
+- Install Cognito authentication SDK
+npm install amazon-cognito-identity-js --legacy-peer-deps
+
+- Clean install all dependencies
+rm -rf node_modules package-lock.json .expo && npm install --legacy-peer-deps
+
+- Start Expo development server
+npx expo start --clear
+
+- Press 'i' in terminal for iOS Simulator
+- Press 'a' in terminal for Android Emulator
+
 ## 1. Project Architecture {#architecture}
 
 ### Folder Structure
