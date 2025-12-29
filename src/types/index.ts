@@ -1,8 +1,8 @@
 // src/types/index.ts
 export enum UserRole {
-  OWNER = "owner",
-  VET = "vet",
-  SHELTER = "shelter",
+  OWNER = 'owner',
+  VET = 'vet',
+  SHELTER = 'shelter'
 }
 
 export interface User {
@@ -50,15 +50,28 @@ export interface Pet {
   ownerId: string;
   shelterId?: string;
   name: string;
-  species: "dog" | "cat" | "bird" | "rabbit" | "other";
+  species: 'dog' | 'cat' | 'bird' | 'rabbit' | 'other';
   breed?: string;
   age?: number;
   weight?: number;
-  gender?: "male" | "female";
+  gender?: 'male' | 'female';
+  color?: string;
   photos: string[];
   microchipId?: string;
   isAdopted: boolean;
   createdAt: string;
+}
+
+export interface MedicalRecord {
+  id: string;
+  petId: string;
+  vetId: string;
+  vetName: string;
+  date: string;
+  diagnosis: string;
+  treatment: string;
+  prescription?: string;
+  notes?: string;
 }
 
 export interface Appointment {
@@ -68,8 +81,8 @@ export interface Appointment {
   vetId: string;
   scheduledAt: string;
   duration: number;
-  status: "pending" | "confirmed" | "in-progress" | "completed" | "cancelled";
-  type: "video" | "in-person" | "chat";
+  status: 'pending' | 'confirmed' | 'in-progress' | 'completed' | 'cancelled';
+  type: 'video' | 'in-person' | 'chat';
   reason: string;
   notes?: string;
   createdAt: string;
