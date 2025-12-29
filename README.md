@@ -1,0 +1,106 @@
+# Laika Pet Care App - Essential Learning Notes 🐕
+
+**Project:** Mobile app connecting pet owners, veterinarians, and animal shelters  
+**Tech Stack:** React Native (Expo SDK 52), TypeScript, AWS Cognito, Redux Toolkit 
+
+## 1. Project Architecture {#architecture}
+
+### Folder Structure
+
+```
+laika-app/
+├── app/                    # Expo Router screens (UI)
+│   ├── _layout.tsx
+│   ├── index.tsx
+│   └── auth/
+│       ├── login.tsx
+│       └── register.tsx
+├── src/                    # Business logic
+│   ├── types/index.ts
+│   ├── constants/theme.ts
+│   ├── store/             # Redux
+│   │   └── slices/
+│   ├── services/          # API calls
+│   │   └── authService.ts
+│   └── config/
+│       └── aws-config.ts
+```
+
+**Key Principle:** Separate UI (`app/`) from logic (`src/`)
+
+### Authentication Architecture
+
+```
+┌─────────────┐
+│   Cognito   │ ← Auth only (emails, passwords, tokens)
+└──────┬──────┘
+       │ Returns: userId: "abc-123"
+       ↓
+┌─────────────┐
+│  DynamoDB   │ ← App data (pets, appointments, records)
+└─────────────┘
+```
+
+**Cognito = Bouncer** (checks who you are)  
+**DynamoDB = Storage** (holds your data)
+
+
+## 2. AWS Cognito Setup {#cognito}
+
+### Configuration Steps
+
+1. AWS Console → Amazon Cognito → Create user pool
+2. Choose: "Add sign-in and sign-up experiences"
+3. Sign-in options:
+   -  Email
+   -  Username
+   -  Phone number
+4. Required attributes:
+   - email, given_name, family_name, phone_number, preferred_username
+5. Enable self-registration
+
+## 3. All Errors Faced & Solutions {#errors}
+
+### Error 1: Cognito Registration - Invalid Parameter Exception
+
+**Error Message:**
+```
+Registration Failed: Attributes did not conform to the schema:
+aws:cognito:system.preferred_username: The attribute is required
+```
+
+**When:** Signing up new user
+
+**Root Cause:** Not sending `preferred_username` as a Cognito attribute
+
+**Solution:** Add to attribute list
+```typescript
+const attributeList = [
+  new CognitoUserAttribute({ Name: 'email', Value: params.email }),
+  new CognitoUserAttribute({ Name: 'preferred_username', Value: params.username }),
+  // ... other attributes
+];
+```
+
+**Lesson:** All required Cognito attributes must be explicitly set
+
+### Error 2: Verification Email Never Arrives
+
+**Error Message:** (No error, just missing email)
+
+**When:** After successful registration
+
+**Root Cause:** Cognito's default email service is unreliable
+- Limited to 50 emails/day
+- Often blocked by Gmail/Outlook
+- Can take 10+ minutes or never arrive
+
+**Solution for Testing:**
+1. AWS Console → Cognito → Users
+2. Select user → Actions → "Confirm account"
+
+**Solution for Production:**
+- Set up Amazon SES with verified domain
+- Configure in Cognito → Messaging → Email
+
+**Lesson:** Never rely on default Cognito email for production
