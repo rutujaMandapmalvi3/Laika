@@ -123,6 +123,85 @@ laika-app/
 6. Shelters      → Shelter info + location
 7. Vets          → Vet clinic info + location
 
+### What Each System Stores
+
+### Cognito (Authentication)
+- Email & password (hashed)
+- Username
+- Basic name & phone
+- Login tokens
+- Email verified status
+
+**Purpose:** Handle login/signup, verify identity
+
+---
+
+### Users Table (Basic Profile)
+- userId (from Cognito)
+- Email
+- Role (owner/vet/shelter)
+- Name
+- Phone (optional for owners)
+- Profile photo URL
+- Address
+- Account status
+
+**Purpose:** Store basic info for ALL users
+
+---
+
+### Vets Table (Vet-Specific)
+- vetId
+- userId (links to Users & Cognito)
+- Clinic name
+- License number
+- Specializations
+- Phone (REQUIRED)
+- Address
+- Operating hours
+- Fees
+- Rating
+
+**Purpose:** Store veterinary business details
+
+---
+
+### Shelters Table (Shelter-Specific)
+- shelterId
+- userId (links to Users & Cognito)
+- Shelter name
+- Phone (REQUIRED)
+- Address
+- Capacity & occupancy
+- Animal types accepted
+- Operating hours
+- Registration number
+- Rating
+
+**Purpose:** Store shelter facility details
+
+---
+
+### Other Tables
+
+**Pets Table:** Pet profiles (name, species, owner, medical history)
+
+**Appointments Table:** Vet appointments (date, time, pet, vet, status)
+
+**MedicalRecords Table:** Medical history per pet (diagnoses, treatments, vaccinations)
+
+**Messages Table:** Chat between users (owner↔vet, owner↔shelter)
+
+---
+
+### Why userId Links Everything?
+
+- Cognito generates unique userId on signup
+- All tables use this same userId
+- One user = One userId across all systems
+- Easy to fetch all data for a user
+
+
 ## 3. All Errors Faced & Solutions {#errors}
 
 ### Error 1: Cognito Registration - Invalid Parameter Exception
