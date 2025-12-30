@@ -25,6 +25,35 @@ npx expo start --clear
 - Press 'i' in terminal for iOS Simulator
 - Press 'a' in terminal for Android Emulator
 
+- DYNAMODB PART-
+
+- cdk init app --language typescript
+  Create CDK project with TypeScript
+
+- npm install aws-cdk-lib
+  Install AWS CDK library
+
+- cdk bootstrap aws://098459119693/us-west-2
+  Prepare AWS account for CDK (one-time setup)
+
+- curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+  Download AWS CLI installer
+
+- sudo installer -pkg AWSCLIV2.pkg -target /
+  Install AWS CLI
+
+- aws configure
+  Configure AWS credentials
+
+- cdk diff
+  Preview what CDK will create/change
+
+- cdk deploy
+  Deploy infrastructure to AWS
+
+- cdk destroy
+  Delete all CDK resources from AWS
+
 ## 1. Project Architecture {#architecture}
 
 ### Folder Structure
