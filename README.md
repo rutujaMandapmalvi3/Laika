@@ -83,9 +83,7 @@ laika-app/
 
 ## System architecture for database management with cognito and dynamoDB:
 
-┌───────────────────────────────────────────────────────────┐
-                    LAIKA AUTHENTICATION SYSTEM               
-└───────────────────────────────────────────────────────────┘
+# LAIKA AUTHENTICATION SYSTEM
 
                           ┌─────────────┐
                           │   COGNITO   │
@@ -115,9 +113,7 @@ laika-app/
 
 
 
-┌───────────────────────────────────────────────────────────┐
-                      ALL DYNAMODB TABLES                     
-└───────────────────────────────────────────────────────────┘
+## All DynamoDB Tables
 
 1. Users         → Basic profile (all users)
 2. Pets          → Pet profiles
