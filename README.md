@@ -111,7 +111,7 @@ laika-app/
           └───────────┘   └───────────┘   └───────────┘
 
 
-
+[View the data file](laika-app/system-db.png)
 
 ## All DynamoDB Tables
 
