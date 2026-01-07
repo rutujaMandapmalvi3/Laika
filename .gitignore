@@ -1,0 +1,75 @@
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.claude/
+
+# Node.js (for both laika-app and laika-infrastructure)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Dependencies
+package-lock.json
+yarn.lock
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Testing
+coverage/
+.nyc_output/
+
+# Build outputs
+dist/
+build/
+out/
+*.log
+
+# CDK (for laika-infrastructure)
+cdk.out/
+.cdk.staging/
+cdk.context.json
+
+# AWS
+*.pem
+*.key
+.aws/
+
+# Laika Infrastructure specific
+laika-infrastructure/lambda/node_modules/
+laika-infrastructure/cdk.out/
+laika-infrastructure/*.d.ts
+laika-infrastructure/*.js
+
+# Laika App specific (React Native / Expo)
+laika-app/.expo/
+laika-app/.expo-shared/
+laika-app/android/
+laika-app/ios/
+laika-app/dist/
+
+# Misc
+*.bak
+*.tmp
+*.temp
+AWSCLIV2.pkg
+*.pkg
